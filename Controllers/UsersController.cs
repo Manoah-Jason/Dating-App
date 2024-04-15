@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 
 namespace DatingApp.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
         public UsersController(DataContext context)
@@ -22,18 +20,19 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            var users =await _context.Users.ToListAsync();
+            var users = await _context.Users.ToListAsync();
 
             return users;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<AppUser>> GetUsers(int id)        {
-   
+        public async Task<ActionResult<AppUser>> GetUsers(int id)
+        {
+
             return await _context.Users.FindAsync(id);
         }
     }
 
 
-   
+
 }
