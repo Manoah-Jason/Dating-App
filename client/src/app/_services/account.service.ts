@@ -10,6 +10,8 @@ baseUrl="https://localhost:5001/api/";
 private currentUserSource = new BehaviorSubject<User | null>(null);
 currentUser$ = this.currentUserSource.asObservable();
   constructor(private http:HttpClient) { }
+  
+  
   login(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
@@ -20,6 +22,19 @@ currentUser$ = this.currentUserSource.asObservable();
       })
     )
   }
+
+  register(model: any) {
+    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+      map(response => {
+        const user = response;
+        if (user) {
+          this.setCurrentUser(user);
+        }
+      })
+    )
+  }
+
+
   setCurrentUser(user: User) {
     user.roles = [];
     //const roles = this.getDecodedToken(user.token).role;
