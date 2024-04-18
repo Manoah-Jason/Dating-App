@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from './_services/account.service';
 import { User } from './_models/User';
@@ -8,10 +8,17 @@ import { User } from './_models/User';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+
   title = 'client';
   users: any;
   constructor(private http: HttpClient,private accountService:AccountService) { }
   ngOnInit(): void {    
+    
+  }
+
+
+  getUsers()
+  {
     this.http.get('https://localhost:5001/api/Users')
       .subscribe(
         {
@@ -21,7 +28,6 @@ export class AppComponent {
         }
       )
   }
-
   setCurrentUser() {
     const userString = localStorage.getItem('user');
     if (!userString) return;
