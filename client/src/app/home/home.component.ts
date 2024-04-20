@@ -16,6 +16,8 @@ constructor(private http: HttpClient,private accountService:AccountService)
 }
 ngOnInit():void{
   this.getUsers();
+  debugger;
+ var k=  this.accountService.currentUser$;
 }
 
 getUsers()
