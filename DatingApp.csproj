@@ -21,6 +21,8 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Errors\" />
+    <Folder Include="Middleware\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

@@ -23,4 +23,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+var connString = "";
+if (builder.Environment.IsDevelopment())
+{ 
+    connString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
 app.Run();
