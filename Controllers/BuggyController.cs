@@ -37,9 +37,9 @@ namespace DatingApp.Controllers
         {
             var thing = _context.Users.Find(-1);
 
-            var thingToReturn = thing.ToString();
+            if (thing == null) return NotFound();
 
-            return thingToReturn;
+            return BadRequest("Unauthorized");
         }
 
         [HttpGet("bad-request")]
