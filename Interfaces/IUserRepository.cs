@@ -15,6 +15,6 @@ namespace DatingApp.Interfaces
         Task<AppUser> GetUserByUsernameAsync(string username);
 
         Task<MemberDto> GetMemberAsync(string username);
-
+        Task RemoveUserAsync(int id);
     }
 }

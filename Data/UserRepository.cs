@@ -21,6 +21,23 @@ namespace DatingApp.Data
             _context = context;
             _mapper = mapper;
         }
+        public async Task RemoveUserAsync(int userId)
+        {
+            // Retrieve the user entity from the database
+            var user = await _context.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                // User not found, handle accordingly (e.g., return or throw exception)
+                return;
+            }
+
+            // Remove the user entity from the context
+            _context.Users.Remove(user);
+
+            // Save changes to apply the deletion to the database
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<MemberDto> GetMemberAsync(string username)
         {
@@ -67,7 +84,8 @@ namespace DatingApp.Data
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .Include(p => p.Photos).ToListAsync();
         }
 
         public void Update(AppUser user)

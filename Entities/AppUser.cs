@@ -23,9 +23,9 @@ namespace DatingApp.Entities
         
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public int GetAge()
-        {
-            return DateOfBirth.CalculateAge();
-        }
+        //public int GetAge()
+        //{
+        //    return DateOfBirth.CalculateAge();
+        //}
     }
 }
