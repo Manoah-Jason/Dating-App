@@ -13,7 +13,7 @@ export class AppComponent {
   users: any;
   constructor(private http: HttpClient,private accountService:AccountService) { }
   ngOnInit(): void {    
-    
+    this. getUsers();
   }
 
 

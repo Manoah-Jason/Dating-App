@@ -36,7 +36,7 @@
               "./node_modules/bootswatch/dist/united/bootstrap.css",
               "./node_modules/ngx-toastr/toastr.css",
               
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -105,7 +105,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.css"
              
             ],
             "scripts": []
