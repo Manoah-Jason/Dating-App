@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace DatingApp.Controllers
 {
-  
+    [Authorize]
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
@@ -60,7 +60,7 @@ namespace DatingApp.Controllers
             var user = await _userRepository.GetUserByUsernameAsync(username);
             if(user==null) return NotFound();
             _mapper.Map(memberUpdateDto, user);
-
+            
             _userRepository.Update(user);
 
            // if (await _userRepository) return NoContent();
