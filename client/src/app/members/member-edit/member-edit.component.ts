@@ -44,8 +44,10 @@ next:member=>this.member=member
 
 
 updateMember() {
+  debugger;
   this.memberService.updateMember(this.editForm?.value).subscribe({
     next: _ => {
+
       this.toastr.success('Profile updated successfully');
       this.editForm?.reset(this.member);
     }

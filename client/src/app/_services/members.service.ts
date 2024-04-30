@@ -24,6 +24,7 @@ return this.http.get<Member>(this.baseUrl+'users/'+username);
   }
 
   updateMember(member: Member) {
+    debugger;
     return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
         const index = this.members.indexOf(member);
