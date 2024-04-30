@@ -53,19 +53,39 @@ namespace DatingApp.Controllers
         }
 
 
+   
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
-            var username=User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userRepository.GetUserByUsernameAsync(username);
-            if(user==null) return NotFound();
+
+            if (user == null)
+                return NotFound();
+
+            // Map properties from MemberUpdateDto to AppUser
             _mapper.Map(memberUpdateDto, user);
-            
+
+            // Update the user entity's state to Modified
             _userRepository.Update(user);
 
-           // if (await _userRepository) return NoContent();
-
-            return BadRequest("Failed to update user");
+            // Save changes to the database
+            try
+            {
+                await _context.SaveChangesAsync();
+                return NoContent(); // 204 No Content indicates successful update
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // Handle concurrency conflicts, if needed
+                // For example: return Conflict() if another user has modified the same entity concurrently
+                return Conflict();
+            }
+            catch (DbUpdateException)
+            {
+                // Handle other database update errors, if needed
+                return BadRequest("Failed to update user due to a database error");
+            }
         }
 
 
