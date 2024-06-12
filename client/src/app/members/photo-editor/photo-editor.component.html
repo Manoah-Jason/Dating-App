@@ -12,7 +12,7 @@
             </button>
             <button 
                 [disabled]="photo.isMain"
-               
+                (click)="deletePhoto(photo.id)"
                 class="btn btn-sm btn-danger"
             ><i class="fa fa-trash"></i></button>
         </div>
