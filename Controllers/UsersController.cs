@@ -24,8 +24,9 @@ namespace DatingApp.Controllers
         private readonly DataContext _context;
         private readonly IPhotoService _photoService;
 
-        public UsersController(IUserRepository userRepository, IMapper mapper, DataContext context)
+        public UsersController(IUserRepository userRepository, IMapper mapper, DataContext context, IPhotoService photoService)
         {
+            _photoService = photoService;
             _userRepository = userRepository;
             _mapper = mapper;
             _context = context;
