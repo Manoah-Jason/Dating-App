@@ -92,5 +92,15 @@ namespace DatingApp.Data
         {
             _context.Entry(user).State = EntityState.Modified;
         }
+
+
+        public async Task<bool> SaveAllAsync(AppUser user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
+
+            // Save the changes asynchronously and return the result
+            return await _context.SaveChangesAsync() > 0;
+        }
+
     }
 }
