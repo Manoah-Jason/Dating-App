@@ -4,7 +4,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
+import { FileUploadModule } from 'ng2-file-upload';
 @NgModule({
   declarations: [],
   imports: [
@@ -21,6 +21,7 @@ positionClass:'toast-bottom-right'
 NgxSpinnerModule.forRoot({
   type: 'line-scale-party'
 }),
+FileUploadModule,
 
 
 ],
@@ -29,7 +30,8 @@ exports:[
 BsDropdownModule,
 ToastrModule,
 TabsModule,
-NgxSpinnerModule
+NgxSpinnerModule,
+FileUploadModule,
 
 ]
 })
