@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace DatingApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
@@ -140,6 +140,23 @@ namespace DatingApp.Controllers
             if (await _userRepository.SaveAllAsync(user)) return Ok();
 
             return BadRequest("Problem deleting photo");
+        }
+
+
+        [HttpPut("set-main-photo/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int photoId)
+        {
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+
+            if (photo == null) return NotFound();
+            if (photo.IsMain) return BadRequest("You cannot delete your main photo");
+
+            var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+            if (currentMain != null) photo.IsMain=true;
+            if (await _userRepository.SaveAllAsync(user))return Ok() ;
+            return BadRequest("Problem setting the main photo");
         }
     }
 }

@@ -38,12 +38,9 @@ currentUser$ = this.currentUserSource.asObservable();
 
 
   setCurrentUser(user: User) {
-    user.roles = [];
-    //const roles = this.getDecodedToken(user.token).role;
-    //Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    user.roles = [];   
     localStorage.setItem('user', JSON.stringify(user));
-    this.currentUserSource.next(user);
-   // this.presenceService.createHubConnection(user);
+    this.currentUserSource.next(user);  
   }
 
   logout() {
