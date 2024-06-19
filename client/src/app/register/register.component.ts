@@ -23,19 +23,25 @@ ngOnInit():void{
 this.initializeForm();
 }
 
-initializeForm()
-{
+initializeForm() {
   this.registerForm = new FormGroup({
-    username: new FormControl('',Validators.required), // Initialize username FormControl
-    password: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(8)]),  // Initialize password FormControl
-    confirmPassword:new FormControl('',[Validators.required,this.matchValues('password')])
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(8)
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+      this.matchValues('password')
+    ])
   });
-  this.registerForm.controls['password'].valueChanges.subscribe(
-    {
-      next:()=>this.registerForm.controls['confirmPassword'].updateValueAndValidity()
-    }
-  )
+
+  this.registerForm.controls['password'].valueChanges.subscribe(() => {
+    this.registerForm.controls['confirmPassword'].updateValueAndValidity();
+  });
 }
+
 matchValues(matchTo: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
       const match = control.parent?.get(matchTo);

@@ -17,14 +17,17 @@ export class TextInputComponent implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
+    console.log("writeValue");
     // Implement writeValue method as needed
   }
 
   registerOnChange(fn: any): void {
+    console.log("registerOnChange");
     // Implement registerOnChange method as needed
   }
 
   registerOnTouched(fn: any): void {
+    console.log("registerOnTouched");
     // Implement registerOnTouched method as needed
   }
 
