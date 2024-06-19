@@ -15,6 +15,8 @@ export class RegisterComponent {
  registerForm:FormGroup=new FormGroup({});
 model:any={}
 
+validationErrors: any;
+
 constructor(private accountService :AccountService,private toastr :ToastrService){}
 
 ngOnInit():void{

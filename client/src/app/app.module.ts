@@ -44,11 +44,12 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
      ServerErrorComponent,
      MemberCardComponent,
      MemberEditComponent,
-     PhotoEditorComponent,
-     TextInputComponent
+     PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
+    TextInputComponent,
+
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
