@@ -14,7 +14,7 @@ export class RegisterComponent {
  @Output() cancelRegister=new EventEmitter();
  registerForm:FormGroup=new FormGroup({});
 model:any={}
-
+maxDate = new Date();
 validationErrors: any;
 
 constructor(private fb: FormBuilder,private accountService :AccountService,private toastr :ToastrService){}

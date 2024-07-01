@@ -27,6 +27,8 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
      ServerErrorComponent,
      MemberCardComponent,
      MemberEditComponent,
-     PhotoEditorComponent
+     PhotoEditorComponent,
+     DatePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,9 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule,  
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(), // or .forChild() depending on your application setup
+    
   ],
   providers: [   
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
