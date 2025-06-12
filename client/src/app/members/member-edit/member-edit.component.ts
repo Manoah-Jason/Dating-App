@@ -20,27 +20,36 @@ user:User|null=null;
   }
 }
 @ViewChild('editForm') editForm: NgForm | undefined;
-constructor(private accountService: AccountService, private memberService: MembersService,
-  private toastr: ToastrService)
-{
-  this.accountService.currentUser$.pipe(take(1)).subscribe(
-    {
-      next:user=>this.user=user
-    }
-  )
-}
-ngOnInit(): void {
+  constructor(
+    private accountService: AccountService,
+    private memberService: MembersService,
+    private toastr: ToastrService
+  ) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
+      next: user => {
+        this.user = user;
+        console.log('Logged in user:', user); // 👈 This will log the user object
+        if (this.user) {
+          this.loadMember(); // Load the member after the user has been set
+        }
+      },
+    });
+  }
+
+  ngOnInit(): void {
+    debugger;
   this.loadMember();
 }
-loadMember(){
+  loadMember() {
+    if (!this.user) return;
+    console.log('Loading member for username:', this.user.username); // Debugging: Check username value
+    this.memberService.getMember(this.user.username).subscribe({
+      next: member => {
+        this.member = member;
+      }
+    });
+  }
 
-if(!this.user)return;
-this.memberService.getMember(this.user.userName).subscribe({
-next:member=>this.member=member
-
-})
-
-}
 
 
 updateMember() {

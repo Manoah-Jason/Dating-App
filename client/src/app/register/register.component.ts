@@ -55,17 +55,17 @@ register()
   debugger;
 
   console.log(this.registerForm?.value);
-//   this.accountService.register(this.registerForm?.value).subscribe
-//   (
-// {
-// next:response=>{
-//   console.log(response);
-//   this.cancel();
-// },
-// error:error=>this.toastr.error(error.error)
+   this.accountService.register(this.registerForm?.value).subscribe
+   (
+ {
+ next:response=>{
+   console.log(response);
+   this.cancel();
+ },
+ error:error=>this.toastr.error(error.error)
 
-//}
-//)
+}
+)
 }
 
 cancel()
