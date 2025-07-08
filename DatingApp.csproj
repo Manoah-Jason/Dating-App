@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="clients\client\src\layout\" />
+    <Folder Include="clients\client\src\features\" />
+    <Folder Include="clients\client\src\core\" />
+    <Folder Include="clients\client\src\shared\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Errors\" />
     <Folder Include="Middleware\" />
@@ -27,9 +31,40 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
-  <!-- <ItemGroup>
+  <!-- Optional Swagger support (commented out) -->
+  <!--
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup> -->
+  </ItemGroup>
+  -->
+
+  <!-- ✅ EXCLUDE Angular project from .NET build -->
+  <ItemGroup>
+    <Content Remove="clients\client\**" />
+    <Compile Remove="clients\client\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="clients\client\angular.json" />
+    <Content Include="clients\client\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="clients\client\.postcssrc.json" />
+  </ItemGroup>
+
+  <Target Name="ExcludeAngularFromBuild" BeforeTargets="Build">
+    <ItemGroup>
+      <Content Remove="clients\client\**" />
+      <Compile Remove="clients\client\**" />
+    </ItemGroup>
+  </Target>
+
+  <!-- ✅ (Optional) Build Angular on publish -->
+  <!--
+  <Target Name="BuildAngularApp" AfterTargets="Publish">
+    <Exec Command="cd clients/client &amp;&amp; npm install &amp;&amp; npm run build" />
+    <Copy SourceFiles="clients/client/dist/**" DestinationFolder="$(PublishDir)wwwroot" />
+  </Target>
+  -->
 
 </Project>
