@@ -12,5 +12,12 @@ namespace DatingApp.DTOs
         public required string Token { get; set; }
         public required string Gender { get; set; }
         public string? PhotoUrl { get; set; }
+
+        public required string Id { get; set; }
+        public required string Email { get; set; }   
+        public required string DisplayName { get; set; }   
+        public  string? ImageUrl { get; set; }
+
+
     }
 }

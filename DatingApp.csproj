@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="clients\client\src\layout\" />
     <Folder Include="clients\client\src\features\" />
-    <Folder Include="clients\client\src\core\" />
     <Folder Include="clients\client\src\shared\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Errors\" />
@@ -45,11 +44,17 @@
     <Compile Remove="clients\client\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="clients\client\src\types\user.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="clients\client\angular.json" />
     <Content Include="clients\client\package.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="clients\client\.postcssrc.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="clients\client\src\types\user.ts" />
   </ItemGroup>
 
   <Target Name="ExcludeAngularFromBuild" BeforeTargets="Build">
