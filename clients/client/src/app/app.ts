@@ -6,12 +6,13 @@ import { OnInit } from '../../node_modules/@angular/core/index';
 import { lastValueFrom } from 'rxjs';
 import { Nav } from './layout/nav/nav';
 import { AccountService } from '../core/account-service';
+import { Home } from '../features/home/home';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, Nav],
+  imports: [Nav, Home],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

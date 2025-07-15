@@ -1,12 +1,13 @@
 <app-nav></app-nav>
-<div class="card bg-base-100 w-1/2 mx-auto p-10 mt-24 shadow-xl">
+<app-home></app-home>
+<!--<div class="card bg-base-100 w-1/2 mx-auto p-10 mt-24 shadow-xl">
   <h3 class="text-3xl text-red-500">{{ title }}</h3>
   <ng-container *ngIf="members() !== null; else loadingTpl">
     <ul>
       @for (member of members()!; track member.id) {
-      <li>
+      <li>-->
         <!-- <img *ngIf="member.photoUrl" [src]="member.photoUrl" width="50" height="50" alt="Photo" />-->
-        <div><strong>{{ member.userName }}</strong> ({{ member.age }} years)</div>
+        <!--<div><strong>{{ member.userName }}</strong> ({{ member.age }} years)</div>
         <div>{{ member.city }}, {{ member.country }}</div>
       </li>
       }
@@ -17,6 +18,6 @@
 
 <ng-template #loadingTpl>
   <p>Loading members...</p>
-</ng-template>
+</ng-template>-->
 
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->
