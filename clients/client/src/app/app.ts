@@ -30,7 +30,7 @@ export class App implements OnInit {
   }
 
   setCurrentUser() {
-    debugger;
+
     const userString = localStorage.getItem('user');
     if (!userString) return;
     const user = JSON.parse(userString);

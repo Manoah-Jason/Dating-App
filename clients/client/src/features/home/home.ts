@@ -7,7 +7,7 @@ import { User } from '../../types/user';
   selector: 'app-home',
   imports: [Register],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrls: ['./home.css']
 })
 export class Home implements OnInit, OnChanges {
   @Input() membersFromApp: User[] = [];
@@ -15,13 +15,13 @@ export class Home implements OnInit, OnChanges {
   protected registerMode = signal(false);
 
   ngOnInit() {
-    // Initial setup or other logic can go here.
+    console.log('Home component initialized');
   }
 
   // Use ngOnChanges to listen for changes to the @Input property
   ngOnChanges(changes: SimpleChanges) {
     if (changes['membersFromApp']) {
-      console.log('membersFromApp:', this.membersFromApp);
+      console.log('membersFromApp changed:', this.membersFromApp);
     }
   }
 
