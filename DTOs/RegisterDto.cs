@@ -21,5 +21,7 @@ namespace DatingApp.DTOs
         [Required]
         [StringLength(8, MinimumLength = 4)]
         public string Password { get; set; } = string.Empty;
+        public string Email { get;  set; }
+        public string DisplayName { get;  set; }
     }
 }
