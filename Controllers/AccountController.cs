@@ -1,10 +1,11 @@
-using AutoMapper;
+﻿using AutoMapper;
 using DatingApp.Data;
 using DatingApp.DTOs;
 using DatingApp.Entities;
 using DatingApp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,13 +33,30 @@ namespace DatingApp.Controllers
 
             using var hmac = new HMACSHA512();
 
-            var user = _mapper.Map<AppUser>(registerDto);
-            user.UserName = registerDto.Username.ToLower();
-            user.Email = registerDto.Email;
-            user.DisplayName = registerDto.DisplayName;
+            var user = new AppUser
+            {
+                UserName = registerDto.Username.ToLower(),
+                Email = registerDto.Email,
+                DisplayName = registerDto.DisplayName,
+                KnownAs = registerDto.KnownAs,
+                Gender = registerDto.Gender,
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+                PasswordSalt = hmac.Key
+            };
+            // Try to parse DateOfBirth
+            DateOnly dob;
+            if (!DateOnly.TryParseExact(registerDto.DateOfBirth, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
+            {
+                // If invalid or null, assign a random date between 20 and 40 years old
+                var random = new Random();
+                int age = random.Next(20, 41); // 20 to 40 inclusive
+                var birthDate = DateTime.Today.AddYears(-age);
+                dob = DateOnly.FromDateTime(birthDate);
+            }
+            user.DateOfBirth = dob;
 
-            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-            user.PasswordSalt = hmac.Key;
+
+           
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
