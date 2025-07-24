@@ -12,9 +12,15 @@ export type LoginCreds = {
   password: string;
 }
 
-
 export type RegisterCreds = {
+  username: string;
+  knownAs: string;
+  gender: string;
+  dateOfBirth: string; // format: 'yyyy-MM-dd'
+  city: string;
+  country: string;
+  password: string;
   email: string;
   displayName: string;
-  password: string;
 }
+

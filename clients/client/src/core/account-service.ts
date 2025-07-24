@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core'; // ✅ Correct signal import
-import { User } from '../types/user';
+import { RegisterCreds, User } from '../types/user';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -13,21 +13,38 @@ export class AccountService {
   // ✅ Signal to hold current user
   currentUser = signal<User | null>(null);
 
+
   constructor() { }
 
-  login(creds: any) {
-    return this.http.post<User>(this.baseUrl + 'account/login', creds).pipe(
-      tap(user => {
+  register(creds: RegisterCreds) {
+    return this.http.post<User>(this.baseUrl + 'account/register', creds).pipe(
+      tap((user: User) => {
+        debugger;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user); // ✅ Set signal value
+          this.setCurrentUser(user);
         }
       })
     );
   }
 
 
+  login(creds: any) {
+    return this.http.post<User>(this.baseUrl + 'account/login', creds).pipe(
+      tap((user: any) => {
+        if (user) {
+          this.setCurrentUser(user)
+        }
+      })
+    );
+  }
 
+
+  setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser.set(user); // ✅ Set signal value
+
+
+  }
   logout() {
     localStorage.removeItem('user');
     this.currentUser.set(null);
