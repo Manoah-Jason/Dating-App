@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // Import CommonModule
 import { RegisterCreds, User } from '../../../types/user';
@@ -11,6 +11,7 @@ import { RegisterCreds, User } from '../../../types/user';
 })
 export class Register implements OnInit {
   @Input() membersFromHome: User[] = [];
+  cancelRegister = output<boolean>();
   creds = { email: '', displayName: '', password: '' };
 
   // ngOnInit hook for logging values when the component initializes
@@ -25,6 +26,7 @@ export class Register implements OnInit {
   }
 
   cancel() {
+    this.cancelRegister.emit(false);
     console.log('Registration cancelled');
   }
 }
