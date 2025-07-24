@@ -4,11 +4,10 @@ using System.Collections.Generic;
 
 namespace DatingApp.Entities
 {
-    public class AppUser : IdentityUser<int> // Email & UserName already included
+    public class AppUser : IdentityUser<int>
     {
         public string DisplayName { get; set; } = string.Empty;
-
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; } // Keep as DateOnly
 
         public string KnownAs { get; set; } = string.Empty;
         public DateTime Created { get; set; } = DateTime.UtcNow;
@@ -24,8 +23,5 @@ namespace DatingApp.Entities
 
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-
-        // Optional: age calculation helper
-        // public int GetAge() => DateOfBirth.CalculateAge();
     }
 }

@@ -1,9 +1,10 @@
-using AutoMapper;
+﻿using AutoMapper;
 using DatingApp.DTOs;
 using DatingApp.Entities;
 using DatingApp.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -19,7 +20,10 @@ namespace DatingApp.Helpers
                 ForMember(dest=>dest.Age,opt=>opt.MapFrom(src=>src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, AppUser>();
-            CreateMap<RegisterDto, AppUser>();
+            CreateMap<RegisterDto, AppUser>()
+        .ForMember(dest => dest.DateOfBirth,
+            opt => opt.MapFrom<DateOfBirthResolver>());
+
         }
     }
 }
