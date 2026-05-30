@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="AutoMapper" Version="13.0.3" />
     <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.24.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +26,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Errors\" />
     <Folder Include="Middleware\" />
-    <Folder Include="NewFolder\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -41,7 +40,11 @@
   <!-- ✅ EXCLUDE Angular project from .NET build -->
   <ItemGroup>
     <Content Remove="clients\client\**" />
+    <Content Remove="NewFolder\**" />
     <Compile Remove="clients\client\**" />
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="clients\client\src\types\user.ts" />

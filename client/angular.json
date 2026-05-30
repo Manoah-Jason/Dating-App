@@ -74,11 +74,16 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "options": {
-            "ssl": true,
-            "sslCert": "C:/Users/Admin/source/repos/DatingApp/DatingApp/ssl/localhost.pem",
-            "sslKey": "C:/Users/Admin/source/repos/DatingApp/DatingApp/ssl/localhost-key.pem"
-          }
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "client:build:production"
+            },
+            "development": {
+              "browserTarget": "client:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
